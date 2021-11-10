@@ -1,0 +1,16 @@
+.element__like {
+  background-color: white;
+  border: none;
+  width: 22px;
+  height: 19px;
+  background-image: url(../../../image/Vector1.svg);
+  cursor: pointer;
+}
+
+.element__like:hover {
+  opacity: 0.5;
+}
+
+.element__like:active {
+  background-image: url(../../../image/Union.svg);
+}

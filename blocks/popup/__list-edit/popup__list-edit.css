@@ -1,0 +1,43 @@
+.popup__list-edit {
+  border: 0;
+  display: block;
+  font-family: inherit;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  max-width: 500px;
+  height: 40px;
+  margin: 20px 22px 0;
+
+}
+
+.popup__list-edit:first-of-type {
+  margin-top: 40px;
+}
+
+.popup__list-edit::-webkit-input-placeholder {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+.popup__list-edit::-moz-placeholder {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+.popup__list-edit::-ms-input-placeholder {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+.popup__list-edit::placeholder {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+@media screen and (min-width: 1024px) {
+  .popup__list-edit {
+    margin: 20px 36px 0;
+  }
+
+  .popup__list-edit:first-of-type {
+    margin: 35px 36px 0;
+  }
+}

@@ -1,0 +1,12 @@
+.popup__cover-image{
+  max-width: 75vw;
+  max-height: 75vh;
+  margin: auto;
+  z-index: 4;
+  display: inherit;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+
+}

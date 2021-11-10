@@ -1,0 +1,10 @@
+.element__name {
+  background-color: white;
+  margin: 0;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 79px;
+  border-radius: 0 0 10px 10px;
+}

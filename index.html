@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+  <link rel="stylesheet" href="./pages/index.css">
+</head>
+
+<body class='page'>
+  <header class="header">
+    <img src="./image/Vector.svg" alt="логотип сайта" class='header__logo'>
+  </header>
+  <main class="container">
+    <section class='profile'>
+      <div class="profile__info">
+        <img src="./image/image.jpg" alt="аватарка" class="profile__avatar">
+        <div class="profile__text">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <button type="button" class="profile__edit-button"></button>
+          <p class="profile__subtitle">Иследователь океана</p>
+        </div>
+      </div>
+      <button type="button" class="profile__add-button"></button>
+    </section>
+    <section class="elements">
+      <ul class="element">
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__text">© 2020 Mesto Russia</p>
+  </footer>
+  <section class="popup popup_name popup_closed">
+    <div class="popup__container popup__container_transform">
+      <button type="button" class="popup__close-icon"><img class='popup__img' src="./image/close-icon.png"
+          alt="крестик"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form name="info" class="popup__form">
+        <input name="name" type="text" placeholder="Имя" class="popup__list-edit popup__list-edit_elem_name"
+          value="Жак-Ив Кусто">
+        <input name="about-myself" type="text" placeholder="О себе"
+          class="popup__list-edit popup__list-edit_elem_profession" value="Иследователь">
+        <button type='submit' class="popup__button">Сохранить</button>
+      </form>
+    </div>
+  </section>
+  <section class="popup popup_place popup_closed">
+    <div class="popup__container popup__container_transform">
+      <button type="button" class="popup__close-icon popup__close-icon-place"><img class='popup__img'
+          src="./image/close-icon.png" alt="крестик"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form name="info" class="popup__form popup__form_place">
+        <input name="name-of-place" type="text" placeholder="Название" value=""
+          class="popup__list-edit popup__list-edit_elem_name popup__list-edit_elem_name_place">
+        <input name="picture" type="text" placeholder="Ссылка на картинку" value=""
+          class="popup__list-edit popup__list-edit_elem_profession popup__list-edit_elem_profession_place">
+        <button type='submit' class="popup__button">Сохранить</button>
+      </form>
+    </div>
+  </section>
+  <template class="place-template">
+    <li class="element__group">
+      <img src="" alt="Фотография места" class="element__image" type='button'>
+      <div class="element__name">
+        <h2 class="element__title">Татарстан</h2>
+        <button type="button" class="element__delete"></button>
+        <button type="button" class="element__like"></button>
+      </div>
+    </li>
+  </template>
+
+  <div class="popup popup__big-picture popup_closed">
+    <div class ='popup__cover-image'>
+    <img src="" alt="большая картинка места" class="popup__big-picture-image">
+    <button type="button" class="popup__big-picture-close-button"><img class='popup__img'
+      src="./image/close-icon.png" alt="крестик"></button>
+      <h3 class="popup__big-picture-title"></h3>
+    </div>
+  </div>
+
+
+
+  <script src="./script.js"></script>
+</body>
+
+</html>

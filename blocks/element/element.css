@@ -1,0 +1,16 @@
+.element {
+  display: grid;
+  list-style: none;
+  padding: 0;
+  gap: 20px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  margin: auto;
+}
+
+@media screen and (min-width: 1024px) {
+  .element {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}

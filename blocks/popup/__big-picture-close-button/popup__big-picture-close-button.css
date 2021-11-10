@@ -1,0 +1,20 @@
+.popup__big-picture-close-button {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  z-index: 4;
+}
+
+.popup__big-picture-close-button :hover {
+  opacity: 0.6;
+}
+
+@media screen and (min-width: 1024px) {
+  .popup__big-picture-close-button{
+    top: -40px;
+    right: -50px;
+  }
+}
