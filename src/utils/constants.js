@@ -16,14 +16,11 @@ export const bigOpened = document.querySelector(".popup__big-picture");
 export const bigPicture = document.querySelector(".popup__big-picture-image");
 export const cardGroup = document.querySelector(".element__group");
 export const formPopupPlace = document.querySelector(".popup__form_place");
-export const nameInputPlace = document.querySelector(
-  ".popup__list-edit_elem_name_place"
-);
+export const nameInputPlace = document.querySelector(".popup__list-edit_elem_name_place");
 export const openModalWindow = document.querySelector('.page__trasition');
 export const closeButtonPlace = document.querySelector(".popup__close-icon-place");
-export const jobInputPlace = document.querySelector(
-  ".popup__list-edit_elem_profession_place"
-);
+export const jobInputPlace = document.querySelector(".popup__list-edit_elem_profession_place");
 export const coverImage = document.querySelector('.popup__cover-image');
-export const button = document.querySelector('button');
-export const popup = document.querySelector('.popup__name');
+export const button = document.querySelector('.button');
+export const popup = document.querySelector('.popup_name');
+export const bigButtonClose = bigOpened.querySelector(".popup__img");

@@ -12,7 +12,8 @@ module.exports = {
     filename: 'main.js',
     publicPath: '',
   },
-  mode: 'development',
+  devtool: 'eval-source-map',
+  mode: 'production',
   devServer: {
     static: path.resolve(__dirname, './dist'),
     open: true,
@@ -50,5 +51,5 @@ module.exports = {
     new MiniCssExtractPlugin(),
 
   ],
-  devtool: 'eval-source-map'
+  
 }

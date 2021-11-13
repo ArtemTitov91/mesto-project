@@ -11,8 +11,8 @@ import {editPopupButton,
   nameInput, 
   jobInput,
   openModalWindow,
+  popup,
 } from '../utils/constants.js';
-
 
 export function openPopup(popupElement) {
     popupElement.classList.remove("popup_closed");
@@ -25,6 +25,7 @@ export function openPopup(popupElement) {
     nameInput.value = mainName.textContent;
     jobInput.value = mainJob.textContent;
     openPopup(editPopup);
+    
   });
 
 //open 'place' window form
@@ -33,7 +34,7 @@ export function openPopup(popupElement) {
   });
 
 // close popup
-  function closePopup(popupClose) {
+export function closePopup(popupClose) {
     popupClose.classList.add("popup_closed");
     popupClose.classList.remove("page__trasition");
     document.removeEventListener('keydown', escClose);
@@ -43,9 +44,7 @@ export function openPopup(popupElement) {
   popup.addEventListener('click', handlePopupClick);
 
   //close 'place' window form
-  closeButtonPlace.addEventListener("click", function () {
-    closePopup(addPopup);
-  });
+  addPopup.addEventListener("click", handlePopupClick);
   
 // save information writes in input
 
@@ -61,17 +60,17 @@ function handleProfileSubmit(evt) {
 formPopupName.addEventListener("submit", handleProfileSubmit);
 
 //push ESC for close popup
-
 const  escClose = (evt) => {
   if (evt.key === 'Escape') {
     closePopup(openModalWindow);
   }
 };
+
 document.addEventListener('keydown', escClose);
 
 // close overlay and cross
 
-function handlePopupClick(event) {
+export function handlePopupClick(event) {
   if (event.target.classList.contains("popup__img") || event.target.classList.contains('popup')) {
     closePopup(event.target.closest('.popup'));
   }

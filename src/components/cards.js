@@ -1,4 +1,20 @@
-console.log("карточки подключены");
+
+import {
+  element,
+  cardTemplate,
+  addPopup,
+  bigTitle,
+  bigOpened,
+  bigPicture,
+  formPopupPlace
+} from '../utils/constants.js';
+
+import {
+   openPopup,
+   closePopup,
+   handlePopupClick
+  } from "./modal";
+
 //   cards are for join
 
 export const cards = [
@@ -84,8 +100,11 @@ export const cards = [
     closePopup(addPopup);
   
     formPopupPlace.reset();
-    console.log();
   }
-
+  
   formPopupPlace.addEventListener("submit", handleCardSubmit);
   
+  bigOpened.addEventListener("click", handlePopupClick);
+  
+
+

@@ -1,4 +1,4 @@
-console.log("валидаци подключена");
+
 // valid 
 
  export const showInputError = (formElement, inputElement, errorMessage) => {
@@ -71,11 +71,4 @@ console.log("валидаци подключена");
     formSelector: '.popup__form'
   }); 
   
-  const button = document.querySelector('button');
   
-  function handleClick(evt) {
-   evt.preventDefault()
-    }
-  
-  
-  button.addEventListener('click', handleClick); 
