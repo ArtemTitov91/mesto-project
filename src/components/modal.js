@@ -1,17 +1,14 @@
-console.log("модал подключен");
+
 // open popup
-import {editPopupButton, 
+import { 
   editPopup,
-  formPopupName, 
   addPopupButton, 
-  addPopup,
-  closeButtonPlace,  
+  addPopup, 
   mainName, 
   mainJob, 
   nameInput, 
   jobInput,
   openModalWindow,
-  popup,
 } from '../utils/constants.js';
 
 export function openPopup(popupElement) {
@@ -19,14 +16,6 @@ export function openPopup(popupElement) {
     popupElement.classList.add("page__trasition");
     document.addEventListener('keydown', escClose);
   }
-
-  // open 'name' window form
-    editPopupButton.addEventListener("click", function () {
-    nameInput.value = mainName.textContent;
-    jobInput.value = mainJob.textContent;
-    openPopup(editPopup);
-    
-  });
 
 //open 'place' window form
   addPopupButton.addEventListener("click", function () {
@@ -37,18 +26,11 @@ export function openPopup(popupElement) {
 export function closePopup(popupClose) {
     popupClose.classList.add("popup_closed");
     popupClose.classList.remove("page__trasition");
-    document.removeEventListener('keydown', escClose);
   }
-  
-      // close 'name' window form
-  popup.addEventListener('click', handlePopupClick);
 
-  //close 'place' window form
-  addPopup.addEventListener("click", handlePopupClick);
-  
 // save information writes in input
 
-function handleProfileSubmit(evt) {
+export function handleProfileSubmit(evt) {
   evt.preventDefault();
 
   mainName.textContent = nameInput.value;
@@ -57,21 +39,9 @@ function handleProfileSubmit(evt) {
   closePopup(editPopup);
 }
 
-formPopupName.addEventListener("submit", handleProfileSubmit);
-
 //push ESC for close popup
 const  escClose = (evt) => {
   if (evt.key === 'Escape') {
     closePopup(openModalWindow);
   }
 };
-
-document.addEventListener('keydown', escClose);
-
-// close overlay and cross
-
-export function handlePopupClick(event) {
-  if (event.target.classList.contains("popup__img") || event.target.classList.contains('popup')) {
-    closePopup(event.target.closest('.popup'));
-  }
-}
