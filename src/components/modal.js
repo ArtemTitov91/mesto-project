@@ -1,11 +1,7 @@
 
 // open popup
 import { 
-  editPopup,
-  mainName, 
-  mainJob, 
-  nameInput, 
-  jobInput,
+  addPopup,
   openModalWindow,
 } from '../utils/constants.js';
 
@@ -21,12 +17,14 @@ export function closePopup(popupClose) {
     popupClose.classList.add("popup_closed");
     popupClose.classList.remove("page__trasition");
     document.removeEventListener('keydown', escClose);
+    
   }
 
 
 //push ESC for close popup
 const  escClose = (evt) => {
   if (evt.key === 'Escape') {
+  const openModalWindow = document.querySelector('.page__trasition');
     closePopup(openModalWindow);
   }
 };

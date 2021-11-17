@@ -17,7 +17,7 @@ export const bigPicture = document.querySelector(".popup__big-picture-image");
 export const cardGroup = document.querySelector(".element__group");
 export const formPopupPlace = document.querySelector(".popup__form_place");
 export const nameInputPlace = document.querySelector(".popup__list-edit_elem_name_place");
-export const openModalWindow = document.querySelector('.page__trasition');
+
 export const closeButtonPlace = document.querySelector(".popup__close-icon-place");
 export const jobInputPlace = document.querySelector(".popup__list-edit_elem_profession_place");
 export const coverImage = document.querySelector('.popup__cover-image');
