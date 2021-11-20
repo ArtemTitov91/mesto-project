@@ -1,7 +1,10 @@
-  
+
+
   export const editPopupButton = document.querySelector(".profile__edit-button"); 
   export const editPopup = document.querySelector(".popup_name");
-export const mainName = document.querySelector(".profile__title");
+  export const deletePopup = document.querySelector(".popup__delete");
+  export const avatarPopup = document.querySelector(".popup__avatar");
+  export const mainName = document.querySelector(".profile__title");
 export const mainJob = document.querySelector(".profile__subtitle");
 export const formPopupName = document.querySelector(".popup__form");
 export const nameInput = formPopupName.querySelector(".popup__list-edit_elem_name");
@@ -17,36 +20,15 @@ export const bigPicture = document.querySelector(".popup__big-picture-image");
 export const cardGroup = document.querySelector(".element__group");
 export const formPopupPlace = document.querySelector(".popup__form_place");
 export const nameInputPlace = document.querySelector(".popup__list-edit_elem_name_place");
-
+export const avatar = document.querySelector(".profile__avatar");
+export const avatarInput = document.querySelector(".popup__list-edit_elem_profession_avatar");
+export const avatarForm = document.querySelector(".popup__form_avatar");
 export const closeButtonPlace = document.querySelector(".popup__close-icon-place");
 export const jobInputPlace = document.querySelector(".popup__list-edit_elem_profession_place");
 export const coverImage = document.querySelector('.popup__cover-image');
 export const button = document.querySelector('.button');
 export const popup = document.querySelector('.popup_name');
 export const bigButtonClose = bigOpened.querySelector(".popup__img");
-export const cards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+export const deleteButton = document.querySelector(".element__delete");
+export const submitButton = document.querySelector(".popup__button");
+export const cards = [ ];

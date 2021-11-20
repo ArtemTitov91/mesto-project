@@ -1,8 +1,33 @@
 .profile__avatar {
+  background-position:center;
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 120px;
   height: 120px;
   border-radius: 50%;
   margin: 0 auto;
+  cursor: pointer;
+  position: relative;
 }
 
+
+   .profile__avatar::after{
+     position: absolute;
+  content: ' ';
+  width: 120px;
+  height: 120px;
+  background-color: black;
+  opacity: 1;
+  background-image: url(../../../image/Vector.svg);
+  background-position:center;
+  background-size: initial;
+  background-repeat: no-repeat;
+  visibility: hidden;
+  transition:  0.2s linear;
+}
+
+.profile__avatar:hover::after{
+visibility: visible;
+opacity: 0.5;
+}
 

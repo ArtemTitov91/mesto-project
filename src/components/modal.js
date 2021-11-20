@@ -1,9 +1,4 @@
-
 // open popup
-import { 
-  addPopup,
-  openModalWindow,
-} from '../utils/constants.js';
 
 export function openPopup(popupElement) {
     popupElement.classList.remove("popup_closed");

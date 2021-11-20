@@ -1,7 +1,9 @@
 import './index.css';
+import '../components/api.js'
 import '../components/modal.js';
 import '../components/validate.js';
 import '../components/cards.js';
+
 
 import {
     cards,
@@ -19,7 +21,12 @@ import {
     editPopup,
     popup,
     formPopupName,
-    addPopupButton
+    addPopupButton,
+    deletePopup,
+    avatar,
+    avatarPopup,
+    avatarInput,
+    avatarForm
 } from "../utils/constants.js";
 
 import {
@@ -37,27 +44,47 @@ import {
 
    } from "../components/validate.js";
 
-const addCard = (card, container) => {
+   import {
+    queryLoadCards,
+    addNewCard,
+    replaceAvatar
+   } from "../components/api.js";
+
+
+   
+
+export const addCard = (card, container) => {
     container.prepend(card);
   };
-  
+
+  queryLoadCards();
   cards.forEach(function (item) {
     const card = createCard(item);
     addCard(card, element);
   });
   function handleCardSubmit(evt) {
     evt.preventDefault();
+    addNewCard(nameInputPlace.value, jobInputPlace.value)
     const objCard = {
       name: nameInputPlace.value,
       link: jobInputPlace.value,
     };
-  
     const newCard = createCard(objCard);
     addCard(newCard, element);
+    
+    
+    
     closePopup(addPopup);
   
     formPopupPlace.reset();
   }
+  const handleAvatarButton = (evt) => {
+    evt.preventDefault();
+    replaceAvatar(avatarInput.value);
+    closePopup(avatarPopup);
+  }
+
+  avatarForm.addEventListener("submit", handleAvatarButton);
 
   formPopupPlace.addEventListener("submit", handleCardSubmit);
   
@@ -69,14 +96,24 @@ const addCard = (card, container) => {
     jobInput.value = mainJob.textContent;
     openPopup(editPopup);
   });
+  
+  // open avatar
+  avatar.addEventListener('click', () =>{
+    openPopup(avatarPopup);
+  })
+
         // close 'name' window form
         popup.addEventListener('click', handlePopupClick);
 
         //close 'place' window form
-        addPopup.addEventListener("click", handlePopupClick);
+        addPopup.addEventListener('click', handlePopupClick);
 
-        formPopupName.addEventListener("submit", handleProfileSubmit);
+        //close 'avatar' window form
+        avatarPopup.addEventListener('click', handlePopupClick);
 
+        formPopupName.addEventListener('submit', handleProfileSubmit);
+
+        deletePopup.addEventListener('click', handlePopupClick);
         // close overlay and cross
 
 export function handlePopupClick(event) {
@@ -85,6 +122,26 @@ export function handlePopupClick(event) {
     }
   }
   
+export const loaderText = () => {
+  const openModalWindow = document.querySelector('.page__trasition');
+  const popupButton = openModalWindow.querySelector('.popup__button');
+  preloaderText(popupButton)
+}
+export const NotloaderText = () => {
+  const openModalWindow = document.querySelector('.page__trasition');
+  const popupButton = openModalWindow.querySelector('.popup__button');
+  initinalText(popupButton)
+}
+const preloaderText = (text ) => {
+  text.textContent = "Сохранение..."
+  text.disabled = true;
+}
+
+const initinalText = (text) => {
+  text.textContent = "Сохранить"
+  text.disabled = false;
+}
+
   //open 'place' window form
   addPopupButton.addEventListener("click", function () {
     openPopup(addPopup);
