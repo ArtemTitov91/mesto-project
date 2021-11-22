@@ -26,7 +26,10 @@ import {
     avatar,
     avatarPopup,
     avatarInput,
-    avatarForm
+    avatarForm,
+    popupDelete,
+    popupDeleteButton,
+    submitButton
 } from "../utils/constants.js";
 
 import {
@@ -36,7 +39,7 @@ import {
 
 
    import {
-    createCard
+    createCard,
    } from "../components/cards.js";
 
    import {
@@ -47,24 +50,54 @@ import {
    import {
     queryLoadCards,
     addNewCard,
-    replaceAvatar
+    replaceAvatar,
+    queryUser,
+    editProfile
    } from "../components/api.js";
-
-
    
+   queryUser()
+   .then((result) => {
+    mainName.textContent = result.name;
+    mainJob.textContent = result.about;
+    avatar.style = result.avatar;
+    avatar.style.backgroundImage = `url(${result.avatar})`
+})
+.catch((err) => {
+  console.log("Don't load profile", err);
+});
+
+
 
 export const addCard = (card, container) => {
     container.prepend(card);
-  };
 
-  queryLoadCards();
-  cards.forEach(function (item) {
-    const card = createCard(item);
-    addCard(card, element);
+  };
+  
+  queryLoadCards()
+  .then((result) => {
+    for(let key in result){
+      let obj = {
+          name: result[key].name,
+          link: result[key].link,
+          id: result[key]._id,
+          likes: result[key].likes.length,
+          person: result[key].owner.name
+        };
+        addCard(createCard(obj), element);
+    }
+    return cards;
+  })
+  .catch((err) => {
+  console.log("Don't load cards", err);
   });
+
+
   function handleCardSubmit(evt) {
     evt.preventDefault();
     addNewCard(nameInputPlace.value, jobInputPlace.value)
+    .then ((data) => data)
+   .catch ((err) => {"Don't load card", err})
+   .finally (() => NotloaderText())
     const objCard = {
       name: nameInputPlace.value,
       link: jobInputPlace.value,
@@ -131,7 +164,9 @@ export const NotloaderText = () => {
   const openModalWindow = document.querySelector('.page__trasition');
   const popupButton = openModalWindow.querySelector('.popup__button');
   initinalText(popupButton)
+  
 }
+
 const preloaderText = (text ) => {
   text.textContent = "Сохранение..."
   text.disabled = true;
@@ -153,9 +188,23 @@ function handleProfileSubmit(evt) {
 
   mainName.textContent = nameInput.value;
   mainJob.textContent = jobInput.value;
+  editProfile()
+    .then ((result) =>{
+      mainName.textContent = result.name;
+      mainJob.textContent = result.about;
+    })
+    .catch((err) => {
+      console.log("Don't sent profile", err);
+    })
+    .finally (() => NotloaderText()
+    )
 
   closePopup(editPopup);
 }
+
+
+
+
 
 enableValidation({
   formSelector: ".popup__form",
@@ -165,3 +214,13 @@ enableValidation({
   inputErrorClass: "popup__input-error",
   errorClass: "popup__form_error"
 });
+
+
+function deleteCard (event) {
+  if (event.target.classList.contains("popup__button") ||
+   event.target.classList.contains('popup')) {
+
+    closePopup(event.target.closest('.popup'));
+  }
+}
+

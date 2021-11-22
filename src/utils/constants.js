@@ -30,5 +30,7 @@ export const button = document.querySelector('.button');
 export const popup = document.querySelector('.popup_name');
 export const bigButtonClose = bigOpened.querySelector(".popup__img");
 export const deleteButton = document.querySelector(".element__delete");
+export const popupDeleteButton = document.querySelector(".popup__button_delete");
 export const submitButton = document.querySelector(".popup__button");
+export const popupDelete = document.querySelector(".popup__delete");
 export const cards = [ ];
