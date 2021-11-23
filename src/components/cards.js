@@ -5,23 +5,24 @@ import {
   bigOpened,
   bigPicture,
   mainName,
-  mainJob,
   deletePopup,
-  PopupDeleteButton,
-  submitButton
 } from '../utils/constants.js';
 
 import {
-  closePopup,
    openPopup,
+   closePopup
   } from "./modal.js";
 
   import {
     likeCard,
     deleteCardsLike,
-    queryUser
+    deleteCards,
    } from "./api.js";
 
+   import {
+    NotloaderText,
+    loadCards
+   } from "../pages/index.js";
 //   cards are for join
 
   
@@ -37,6 +38,7 @@ import {
     cardImg.alt = dataCard.name;
     cardImg.src = dataCard.link;
     likeCounter.textContent = dataCard.likes;
+    cardElement.id = dataCard.id;
 
   
     btnLike.addEventListener("click", (evt) => {
@@ -67,16 +69,22 @@ import {
         deleteButton.remove()
       } 
       deleteButton.addEventListener("click", function () { 
-
         openPopup(deletePopup);
         const openModalWindow = document.querySelector('.page__trasition');
-      const popupButton = openModalWindow.querySelector('.popup__button');
-        popupButton.classList.add("popup__button_delete");
+        const popupButton = openModalWindow.querySelector('.popup__button');
+        popupButton.addEventListener("click", () => {
+          deleteCards(cardElement.id)
+          .then ((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          .finally (() =>{NotloaderText();
+            closePopup(deletePopup)})
+        })
       })
       };
       deletebutton()
       return cardElement;
   };
-
-
-

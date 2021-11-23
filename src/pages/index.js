@@ -72,7 +72,7 @@ export const addCard = (card, container) => {
     container.prepend(card);
 
   };
-  
+  export const loadCards = () =>{
   queryLoadCards()
   .then((result) => {
     for(let key in result){
@@ -90,7 +90,8 @@ export const addCard = (card, container) => {
   .catch((err) => {
   console.log("Don't load cards", err);
   });
-
+};
+loadCards();
 
   function handleCardSubmit(evt) {
     evt.preventDefault();
@@ -113,8 +114,16 @@ export const addCard = (card, container) => {
   }
   const handleAvatarButton = (evt) => {
     evt.preventDefault();
-    replaceAvatar(avatarInput.value);
-    closePopup(avatarPopup);
+    replaceAvatar(avatarInput.value)
+    .then((res) =>{
+      avatar.style.backgroundImage = `url(${res.avatar})`
+
+    })
+    .catch((err) => {
+      console.log("Can't load avatar", err);
+    })
+    .finally (() =>{ NotloaderText();closePopup(avatarPopup);})
+    
   }
 
   avatarForm.addEventListener("submit", handleAvatarButton);
@@ -216,11 +225,16 @@ enableValidation({
 });
 
 
-function deleteCard (event) {
-  if (event.target.classList.contains("popup__button") ||
-   event.target.classList.contains('popup')) {
+// function deleteCard (event) {
+//   if (event.target.classList.contains("popup__button") ||
+//    event.target.classList.contains('popup')) {
+//     closePopup(event.target.closest('.popup'));
+//   }
+// }
 
-    closePopup(event.target.closest('.popup'));
+
+export const deleteCard = (cardId) => {
+  const openModalWindow = document.querySelector('.page__trasition');
+  const popupButton = openModalWindow.querySelector('.popup__button');
+  
   }
-}
-

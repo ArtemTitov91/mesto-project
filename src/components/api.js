@@ -169,7 +169,8 @@ export const deleteCardsLike = (cardId) => {
 export const getIdCard = () => {
   return fetch('https://nomoreparties.co/v1/plus-cohort-3/cards', {
   headers: {
-    authorization: 'cd4147fa-ca61-452f-8003-be9546316754'
+    authorization: 'cd4147fa-ca61-452f-8003-be9546316754',
+      "Content-Type": "application/json",
   },
 })
 .then((res) => {
@@ -203,5 +204,5 @@ if (res.ok) {
 return Promise.reject(`Ошибка: ${res.status}`);
 }
 })
-.finally (() => NotloaderText())
+
 };
