@@ -27,9 +27,6 @@ import {
     avatarPopup,
     avatarInput,
     avatarForm,
-    popupDelete,
-    popupDeleteButton,
-    submitButton
 } from "../utils/constants.js";
 
 import {
@@ -61,6 +58,7 @@ import {
     mainJob.textContent = result.about;
     avatar.style = result.avatar;
     avatar.style.backgroundImage = `url(${result.avatar})`
+    avatar.id = result._id;
 })
 .catch((err) => {
   console.log("Don't load profile", err);
@@ -80,7 +78,7 @@ export const addCard = (card, container) => {
           name: result[key].name,
           link: result[key].link,
           id: result[key]._id,
-          likes: result[key].likes.length,
+          likes: result[key].likes,
           person: result[key].owner.name
         };
         addCard(createCard(obj), element);

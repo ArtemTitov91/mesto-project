@@ -6,6 +6,8 @@ import {
   bigPicture,
   mainName,
   deletePopup,
+
+  avatar
 } from '../utils/constants.js';
 
 import {
@@ -33,19 +35,31 @@ import {
     const btnLike = cardElement.querySelector(".element__like");
     const likeCounter = cardElement.querySelector(".element__countLike");
     const deleteButton = cardElement.querySelector(".element__delete");
+    const turnOnLike = cardElement.querySelector(".element__like");
 
     cardTitle.textContent = dataCard.name;
     cardImg.alt = dataCard.name;
     cardImg.src = dataCard.link;
-    likeCounter.textContent = dataCard.likes;
+    likeCounter.textContent = dataCard.likes.length;
     cardElement.id = dataCard.id;
 
+     console.log(avatar.id);
+    dataCard.likes.some((item) =>{
+      if (item._id === avatar.id){
+        console.log(avatar.id);
+        turnOnLike.classList.add("element__like_active");
+      }
+    });
+     
+    
+    
   
     btnLike.addEventListener("click", (evt) => {
       evt.target.classList.toggle("element__like_active");
       if (btnLike.classList.contains('element__like_active')){
         likeCard(dataCard.id)
         .then(newLike =>{
+          console.log(newLike.likes.length);
           likeCounter.textContent = newLike.likes.length;
         })
       } else {
