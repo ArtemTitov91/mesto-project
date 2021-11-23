@@ -98,7 +98,7 @@ loadCards();
     addNewCard(nameInputPlace.value, jobInputPlace.value)
     .then ((data) => data)
    .catch ((err) => {"Don't load card", err})
-   .finally (() => NotloaderText())
+   .finally (() =>{NotloaderText();
     const objCard = {
       name: nameInputPlace.value,
       link: jobInputPlace.value,
@@ -111,6 +111,8 @@ loadCards();
     closePopup(addPopup);
   
     formPopupPlace.reset();
+  })
+
   }
   const handleAvatarButton = (evt) => {
     evt.preventDefault();
