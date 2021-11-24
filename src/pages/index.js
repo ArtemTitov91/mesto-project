@@ -58,7 +58,6 @@ import {
     mainJob.textContent = result.about;
     avatar.style = result.avatar;
     avatar.style.backgroundImage = `url(${result.avatar})`
-    avatar.id = result._id;
 })
 .catch((err) => {
   console.log("Don't load profile", err);
@@ -95,11 +94,14 @@ loadCards();
     evt.preventDefault();
     addNewCard(nameInputPlace.value, jobInputPlace.value)
     .then ((data) => data)
-   .catch ((err) => {"Don't load card", err})
-   .finally (() =>{NotloaderText();
+    .catch ((err) => {"Don't load card", err})
+    .finally (() =>{NotloaderText();
     const objCard = {
       name: nameInputPlace.value,
       link: jobInputPlace.value,
+      likes: [],
+      person: mainName.textContent,
+      
     };
     const newCard = createCard(objCard);
     addCard(newCard, element);
@@ -109,6 +111,7 @@ loadCards();
     closePopup(addPopup);
   
     formPopupPlace.reset();
+    location.reload();
   })
 
   }

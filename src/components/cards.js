@@ -6,7 +6,7 @@ import {
   bigPicture,
   mainName,
   deletePopup,
-
+  cardGroup,
   avatar
 } from '../utils/constants.js';
 
@@ -43,14 +43,12 @@ import {
     likeCounter.textContent = dataCard.likes.length;
     cardElement.id = dataCard.id;
 
-     console.log(avatar.id);
     dataCard.likes.some((item) =>{
       if (item._id === avatar.id){
-        console.log(avatar.id);
         turnOnLike.classList.add("element__like_active");
       }
     });
-     
+    
     
     
   
@@ -59,7 +57,6 @@ import {
       if (btnLike.classList.contains('element__like_active')){
         likeCard(dataCard.id)
         .then(newLike =>{
-          console.log(newLike.likes.length);
           likeCounter.textContent = newLike.likes.length;
         })
       } else {
@@ -86,17 +83,21 @@ import {
         openPopup(deletePopup);
         const openModalWindow = document.querySelector('.page__trasition');
         const popupButton = openModalWindow.querySelector('.popup__button');
+
         popupButton.addEventListener("click", () => {
+          const arr = deleteButton.closest(".element__group");
+          arr.remove();
           deleteCards(cardElement.id)
-          .then ((res) => {
-            console.log(res);
-          })
+          .then ((res) => res )
           .catch((err) => {
             console.log(err);
           })
-          .finally (() =>{NotloaderText();
+          .finally (() =>{
+            NotloaderText();
             closePopup(deletePopup)})
+            location.reload();
         })
+        
       })
       };
       deletebutton()

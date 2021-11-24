@@ -1,15 +1,10 @@
 import {
-    cards,
-    element,
     mainName,
     mainJob,
-    avatar,
 } from "../utils/constants.js";
 
 import {
-    addCard,
     loaderText,
-    NotloaderText
 } from "../pages/index.js";
 
 
@@ -58,7 +53,7 @@ export const editProfile = () => {
   },
   body: JSON.stringify({
     name: mainName.textContent,
-    about: mainJob.textContent
+    about: mainJob.textContent,
   })
 })
 .then((res) => {
@@ -81,7 +76,8 @@ export const addNewCard = (name, about) => {
     },
     body : JSON.stringify({
       name: name,
-      link: about
+      link: about,
+      likes: []
     }),
   })
   .then((res) => {
@@ -95,7 +91,7 @@ export const addNewCard = (name, about) => {
 
 export const deleteCards = (cardId) => {
   loaderText()
-  return fetch(`https://nomoreparties.co/v1/plus-cohort-3/cards/likes/${cardId}`, {
+  return fetch(`https://nomoreparties.co/v1/plus-cohort-3/cards/${cardId}`, {
     method : 'DELETE',
     headers: {
       authorization: 'cd4147fa-ca61-452f-8003-be9546316754',
