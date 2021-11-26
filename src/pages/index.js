@@ -110,8 +110,7 @@ loadCards();
     
     closePopup(addPopup);
   
-    formPopupPlace.reset();
-    location.reload();
+    // formPopupPlace.reset();
   })
 
   }
@@ -208,10 +207,11 @@ function handleProfileSubmit(evt) {
     .catch((err) => {
       console.log("Don't sent profile", err);
     })
-    .finally (() => NotloaderText()
+    .finally (() => {NotloaderText();
+    closePopup(editPopup);}
     )
 
-  closePopup(editPopup);
+  
 }
 
 

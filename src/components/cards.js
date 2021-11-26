@@ -95,7 +95,6 @@ import {
           .finally (() =>{
             NotloaderText();
             closePopup(deletePopup)})
-            location.reload();
         })
         
       })
