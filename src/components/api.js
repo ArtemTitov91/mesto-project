@@ -90,7 +90,7 @@ export const addNewCard = (name, about) => {
 };
 
 export const deleteCards = (cardId) => {
-  loaderText()
+  // loaderText()
   return fetch(`https://nomoreparties.co/v1/plus-cohort-3/cards/${cardId}`, {
     method : 'DELETE',
     headers: {

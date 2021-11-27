@@ -6,7 +6,6 @@ import {
   bigPicture,
   mainName,
   deletePopup,
-  cardGroup,
   avatar
 } from '../utils/constants.js';
 
@@ -80,23 +79,13 @@ import {
         deleteButton.remove()
       } 
       deleteButton.addEventListener("click", function () { 
-        openPopup(deletePopup);
-        const openModalWindow = document.querySelector('.page__trasition');
-        const popupButton = openModalWindow.querySelector('.popup__button');
-
-        popupButton.addEventListener("click", () => {
-          const arr = deleteButton.closest(".element__group");
-          arr.remove();
+          const cardForDelete = deleteButton.closest(".element__group");
+          cardForDelete.remove();
           deleteCards(cardElement.id)
           .then ((res) => res )
           .catch((err) => {
             console.log(err);
           })
-          .finally (() =>{
-            NotloaderText();
-            closePopup(deletePopup)})
-        })
-        
       })
       };
       deletebutton()

@@ -51,6 +51,7 @@ import {
     queryUser,
     editProfile
    } from "../components/api.js";
+
    
    queryUser()
    .then((result) => {
@@ -93,26 +94,22 @@ loadCards();
   function handleCardSubmit(evt) {
     evt.preventDefault();
     addNewCard(nameInputPlace.value, jobInputPlace.value)
-    .then ((data) => data)
-    .catch ((err) => {"Don't load card", err})
-    .finally (() =>{NotloaderText();
-    const objCard = {
-      name: nameInputPlace.value,
-      link: jobInputPlace.value,
-      likes: [],
-      person: mainName.textContent,
-      
-    };
+    .then ((data) => {    
+      const objCard = {
+      name: data.name,
+      link: data.link,
+      likes: data.likes,
+      person: data.owner.name,
+      id: data._id, 
+    }
     const newCard = createCard(objCard);
     addCard(newCard, element);
-    
-    
-    
+  })
+    .catch ((err) => {"Don't load card", err})
+    .finally (() =>{NotloaderText();
     closePopup(addPopup);
-  
     // formPopupPlace.reset();
   })
-
   }
   const handleAvatarButton = (evt) => {
     evt.preventDefault();
