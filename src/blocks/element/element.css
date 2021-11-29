@@ -6,6 +6,7 @@
   flex-wrap: wrap;
   box-sizing: border-box;
   margin: auto;
+  width: 100%;
   max-width: 404px; 
   height: 100%;
 
@@ -15,7 +16,7 @@
   .element {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    max-width: 100%; 
+    max-width: 100%;  
   }
 }
 

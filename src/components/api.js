@@ -1,204 +1,103 @@
-import {
-    mainName,
-    mainJob,
-} from "../utils/constants.js";
+const checkResponse = (res) => {
+  if (res.ok) {
+    return res.json();
+  } else {
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+};
 
-import {
-    loaderText,
-} from "../pages/index.js";
-
-
+const config = {
+  baseUrl: "https://nomoreparties.co/v1/plus-cohort-3/",
+  headers: {
+    authorization: "cd4147fa-ca61-452f-8003-be9546316754",
+    "Content-Type": "application/json",
+  },
+};
 const array = [];
 
-export const queryLoadCards = () =>{
-return fetch('https://nomoreparties.co/v1/plus-cohort-3/cards', {
-  headers: {
-    authorization: 'cd4147fa-ca61-452f-8003-be9546316754'
-  }
-})
-.then((res) => {
-  if (res.ok) {
-    return res.json();
-  } else {
-  return Promise.reject(`Ошибка: ${res.status}`);
-  }
-})
+export const queryLoadCards = () => {
+  return fetch(`${config.baseUrl}cards`, {
+    headers: config.headers,
+  }).then(checkResponse);
 };
-
 
 export const queryUser = () => {
-    return fetch ('https://nomoreparties.co/v1/plus-cohort-3/users/me',{
-        headers: {
-            authorization: 'cd4147fa-ca61-452f-8003-be9546316754'
-          }
-    })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-      return Promise.reject(`Ошибка: ${res.status}`);
-      }
-    })
+  return fetch(`${config.baseUrl}users/me`, {
+    headers: config.headers,
+  }).then(checkResponse);
 };
 
-
-
-export const editProfile = () => {
-  loaderText()
-    return fetch('https://nomoreparties.co/v1/plus-cohort-3/users/me', {
-  method: 'PATCH',
-  headers: {
-    authorization: 'cd4147fa-ca61-452f-8003-be9546316754',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    name: mainName.textContent,
-    about: mainJob.textContent,
-  })
-})
-.then((res) => {
-  if (res.ok) {
-    return res.json();
-  } else {
-  return Promise.reject(`Ошибка: ${res.status}`);
-  }
-})
+export const editProfile = (name, about, button) => {
+  button;
+  return fetch(`${config.baseUrl}users/me`, {
+    method: "PATCH",
+    headers: config.headers,
+    body: JSON.stringify({
+      name: name.textContent,
+      about: about.textContent,
+    }),
+  }).then(checkResponse);
 };
 
-
-export const addNewCard = (name, about) => {
-  loaderText()
-  return fetch('https://nomoreparties.co/v1/plus-cohort-3/cards', {
-    method : 'POST',
-    headers: {
-      authorization: 'cd4147fa-ca61-452f-8003-be9546316754',
-      'Content-Type': 'application/json',
-    },
-    body : JSON.stringify({
+export const addNewCard = (name, about, button) => {
+  button;
+  return fetch(`${config.baseUrl}cards`, {
+    method: "POST",
+    headers: config.headers,
+    body: JSON.stringify({
       name: name,
       link: about,
-      likes: []
+      likes: [],
     }),
-  })
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-    return Promise.reject(`Ошибка: ${res.status}`);
-    }
-  })
+  }).then(checkResponse);
 };
 
 export const deleteCards = (cardId) => {
-  // loaderText()
-  return fetch(`https://nomoreparties.co/v1/plus-cohort-3/cards/${cardId}`, {
-    method : 'DELETE',
-    headers: {
-      authorization: 'cd4147fa-ca61-452f-8003-be9546316754',
-    },
-  })
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-    return Promise.reject(`Ошибка: ${res.status}`);
-    }
-  })
-}
+  return fetch(`${config.baseUrl}cards/${cardId}`, {
+    method: "DELETE",
+    headers: config.headers,
+  }).then(checkResponse);
+};
 
-
-
-export const  sumLike  = (cardId) => {
-  return fetch(`https://nomoreparties.co/v1/plus-cohort-3/cards/likes/${cardId}`,{
-    headers: {
-        authorization: 'cd4147fa-ca61-452f-8003-be9546316754',
-        'Content-Type': 'application/json'
-      }
-})
-.then((res) => {
-  if (res.ok) {
-    return res.json();
-  } else {
-  return Promise.reject(`Ошибка: ${res.status}`);
-  }
-})
+export const sumLike = (cardId) => {
+  return fetch(`${config.baseUrl}cards/likes/${cardId}`, {
+    headers: config.headers,
+  }).then(checkResponse);
 };
 
 export const likeCard = (cardId) => {
-  return fetch(`https://nomoreparties.co/v1/plus-cohort-3/cards/likes/${cardId}`, {
-    method: 'PUT',
-    headers: {
-      authorization: 'cd4147fa-ca61-452f-8003-be9546316754',
-      'Content-Type': 'application/json'
-    },
-  })
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-    return Promise.reject(`Ошибка: ${res.status}`);
-    }
-  })
-}
-
-
+  return fetch(`${config.baseUrl}cards/likes/${cardId}`, {
+    method: "PUT",
+    headers: config.headers,
+  }).then(checkResponse);
+};
 
 export const deleteCardsLike = (cardId) => {
-  return fetch(`https://nomoreparties.co/v1/plus-cohort-3/cards/likes/${cardId}`, {
-    method : 'DELETE',
-    headers: {
-      authorization: 'cd4147fa-ca61-452f-8003-be9546316754',
-      'Content-Type': 'application/json'
-    },
-  })
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-    return Promise.reject(`Ошибка: ${res.status}`);
-    }
-  })
-}
+  return fetch(`${config.baseUrl}cards/likes/${cardId}`, {
+    method: "DELETE",
+    headers: config.headers,
+  }).then(checkResponse);
+};
 
 // deleteCardsLike(cardId)
 
 export const getIdCard = () => {
-  return fetch('https://nomoreparties.co/v1/plus-cohort-3/cards', {
-  headers: {
-    authorization: 'cd4147fa-ca61-452f-8003-be9546316754',
-      "Content-Type": "application/json",
-  },
-})
-.then((res) => {
-  if (res.ok) {
-    return res.json();
-  } else {
-  return Promise.reject(`Ошибка: ${res.status}`);
-  }
-})
-.then ((res) => {
-  return console.log(res)
-})
+  return fetch(`${config.baseUrl}cards`, {
+    headers: config.headers,
+  })
+    .then(checkResponse)
+    .then((res) => {
+      return console.log(res);
+    });
 };
 
-export const replaceAvatar = (link) => {
-  loaderText()
-  return fetch('https://nomoreparties.co/v1/plus-cohort-3/users/me/avatar ', {
-method: 'PATCH',
-headers: {
-  authorization: 'cd4147fa-ca61-452f-8003-be9546316754',
-  'Content-Type': 'application/json'
-},
-body: JSON.stringify({
-  avatar: link
-})
-})
-.then((res) => {
-if (res.ok) {
-  return res.json();
-} else {
-return Promise.reject(`Ошибка: ${res.status}`);
-}
-})
-
+export const replaceAvatar = (link, button) => {
+  button;
+  return fetch(`${config.baseUrl}users/me/avatar}`, {
+    method: "PATCH",
+    headers: config.headers,
+    body: JSON.stringify({
+      avatar: link,
+    }),
+  }).then(checkResponse);
 };
