@@ -5,7 +5,6 @@ import "../components/validate.js";
 import "../components/cards.js";
 
 import {
-  cards,
   element,
   addPopup,
   formPopupPlace,
@@ -26,6 +25,8 @@ import {
   avatarPopup,
   avatarInput,
   avatarForm,
+  formPopupPlaceSubmit,
+  avatarSubmit
 } from "../utils/constants.js";
 
 import { openPopup, closePopup } from "../components/modal.js";
@@ -42,10 +43,12 @@ import {
   editProfile,
 } from "../components/api.js";
 
+
 Promise.all([queryUser(), queryLoadCards()])
   .then(([userData, cards]) => {
     mainName.textContent = userData.name;
     mainJob.textContent = userData.about;
+    avatarPopup.id = userData._id;
     avatar.style.backgroundImage = `url(${userData.avatar})`;
     for (let key in cards) {
       const obj = {
@@ -53,7 +56,7 @@ Promise.all([queryUser(), queryLoadCards()])
         link: cards[key].link,
         id: cards[key]._id,
         likes: cards[key].likes,
-        person: cards[key].owner.name,
+        profile: cards[key].owner._id,
       };
       addCard(createCard(obj), element);
     }
@@ -69,41 +72,50 @@ export const addCard = (card, container) => {
 
 function handleCardSubmit(evt) {
   evt.preventDefault();
-  addNewCard(nameInputPlace.value, jobInputPlace.value, loaderText())
+  loaderText(formPopupPlace)
+  addNewCard(nameInputPlace.value, jobInputPlace.value)
     .then((data) => {
       const objCard = {
         name: data.name,
         link: data.link,
         likes: data.likes,
-        person: data.owner.name,
         id: data._id,
+        profile: data.owner._id,
       };
+console.log(data);
       const newCard = createCard(objCard);
       addCard(newCard, element);
       closePopup(addPopup);
+      nameInputPlace.value = "";
+      jobInputPlace.value = "";
+      formPopupPlaceSubmit.classList.add("popup__button_inactive");
+      formPopupPlaceSubmit.disabled = true;
     })
     .catch((err) => {
       "Don't load card", err;
     })
     .finally(() => {
-      NotloaderText();
-      nameInputPlace.value = "";
-      jobInputPlace.value = "";
+      NotloaderText(formPopupPlace);
       // formPopupPlace.reset();
     });
 }
+
 const handleAvatarButton = (evt) => {
   evt.preventDefault();
-  replaceAvatar(avatarInput.value, loaderText())
+  loaderText(avatarPopup)
+  replaceAvatar(avatarInput.value)
     .then((res) => {
       avatar.style.backgroundImage = `url(${res.avatar})`;
       closePopup(avatarPopup);
+      avatarInput.value = '';
+      avatarSubmit.classList.add("popup__button_inactive");
+      avatarSubmit.disabled = true;
     })
     .catch((err) => {
       console.log("Can't load avatar", err);
     })
     .finally(() => {
-      NotloaderText();
+      NotloaderText(avatarPopup);
     });
 };
 
@@ -148,12 +160,12 @@ export function handlePopupClick(event) {
   }
 }
 
-export const loaderText = () => {
-  const popupButton = document.querySelector(".popup__button");
+export const loaderText = (popup) => {
+  const popupButton = popup.querySelector(".popup__button");
   preloaderText(popupButton);
 };
-export const NotloaderText = () => {
-  const popupButton = document.querySelector(".popup__button");
+export const NotloaderText = (popup) => {
+  const popupButton = popup.querySelector(".popup__button");
   initinalText(popupButton);
 };
 
@@ -169,22 +181,16 @@ const initinalText = (text) => {
 
 //open 'place' window form
 addPopupButton.addEventListener("click", function () {
-  enableValidation({
-    formSelector: ".popup__form",
-    inputSelector: ".popup__list-edit",
-    buttonSelector: ".popup__button",
-    inactiveButtonClass: "popup__button_inactive",
-    inputErrorClass: "popup__input-error",
-    errorClass: "popup__form_error",
-  });
   openPopup(addPopup);
 });
 // save information writes in input
 
 function handleProfileSubmit(evt) {
   evt.preventDefault();
-  editProfile(mainName, mainJob, loaderText())
+  loaderText(formPopupName)
+  editProfile(nameInput, jobInput)
     .then((result) => {
+      console.log(result);
       mainName.textContent = result.name;
       mainJob.textContent = result.about;
       closePopup(editPopup);
@@ -193,7 +199,7 @@ function handleProfileSubmit(evt) {
       console.log("Don't sent profile", err);
     })
     .finally(() => {
-      NotloaderText();
+      NotloaderText(formPopupName);
     });
 }
 

@@ -4,6 +4,7 @@
   export const editPopup = document.querySelector(".popup_name");
   export const deletePopup = document.querySelector(".popup__delete");
   export const avatarPopup = document.querySelector(".popup__avatar");
+  export const avatarSubmit = avatarPopup.querySelector(".popup__button");
   export const mainName = document.querySelector(".profile__title");
 export const mainJob = document.querySelector(".profile__subtitle");
 export const formPopupName = document.querySelector(".popup__form");
@@ -19,6 +20,7 @@ export const bigOpened = document.querySelector(".popup__big-picture");
 export const bigPicture = document.querySelector(".popup__big-picture-image");
 export const cardGroup = document.querySelector(".element__group");
 export const formPopupPlace = document.querySelector(".popup__form_place");
+export const formPopupPlaceSubmit = formPopupPlace.querySelector(".popup__button");
 export const nameInputPlace = document.querySelector(".popup__list-edit_elem_name_place");
 export const avatar = document.querySelector(".profile__avatar");
 export const avatarInput = document.querySelector(".popup__list-edit_elem_profession_avatar");

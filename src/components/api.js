@@ -27,20 +27,18 @@ export const queryUser = () => {
   }).then(checkResponse);
 };
 
-export const editProfile = (name, about, button) => {
-  button;
+export const editProfile = (name, about) => {
   return fetch(`${config.baseUrl}users/me`, {
     method: "PATCH",
     headers: config.headers,
     body: JSON.stringify({
-      name: name.textContent,
-      about: about.textContent,
+      name: name.value,
+      about: about.value,
     }),
   }).then(checkResponse);
 };
 
-export const addNewCard = (name, about, button) => {
-  button;
+export const addNewCard = (name, about) => {
   return fetch(`${config.baseUrl}cards`, {
     method: "POST",
     headers: config.headers,
@@ -91,13 +89,12 @@ export const getIdCard = () => {
     });
 };
 
-export const replaceAvatar = (link, button) => {
-  button;
-  return fetch(`${config.baseUrl}users/me/avatar}`, {
+export const replaceAvatar = (link) => {
+  return fetch(`${config.baseUrl}users/me/avatar`, {
     method: "PATCH",
     headers: config.headers,
     body: JSON.stringify({
       avatar: link,
-    }),
+    })
   }).then(checkResponse);
 };
