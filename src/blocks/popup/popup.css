@@ -21,3 +21,8 @@
 }
 
 
+@media screen and (min-width: 1024px) {
+  .popup {
+    max-width: 822px;  
+  }
+}

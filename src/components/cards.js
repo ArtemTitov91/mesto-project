@@ -36,7 +36,7 @@ export const createCard = (dataCard) => {
   });
 
   btnLike.addEventListener("click", (evt) => {
-    if (btnLike.classList.contains("element__like_active")) {
+    if (!btnLike.classList.contains("element__like_active")) {
     likeCard(dataCard.id)
       .then((newLike) => {
           likeCounter.textContent = newLike.likes.length;
@@ -53,23 +53,6 @@ export const createCard = (dataCard) => {
       }
 });
 
-
-  btnLike.addEventListener("click", (evt) => {
-    likeCard(dataCard.id)
-      .then((newLike) => {
-        evt.target.classList.toggle("element__like_active");
-        if (btnLike.classList.contains("element__like_active")) {
-          likeCounter.textContent = newLike.likes.length;
-        } else {
-          deleteCardsLike(dataCard.id)
-            .then((deleteLikes) => {
-              likeCounter.textContent = deleteLikes.likes.length;
-            })
-            .catch((err) => console.log(err));
-        }
-      })
-      .catch((err) => console.log(err));
-  });
 
   cardImg.addEventListener("click", function () {
     bigPicture.setAttribute("src", dataCard.link);
